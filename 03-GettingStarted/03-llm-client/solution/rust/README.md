@@ -9,11 +9,15 @@ The client calls a model through the GitHub Models inference endpoint (`https://
 
 ## -0- Set your GitHub token
 
-    # zsh/bash
-    export OPENAI_API_KEY="{{YOUR_GITHUB_PAT}}"
+```bash
+# zsh/bash
+export OPENAI_API_KEY="{{YOUR_GITHUB_PAT}}"
+```
 
-    # PowerShell
-    $env:OPENAI_API_KEY = "{{YOUR_GITHUB_PAT}}"
+```powershell
+# PowerShell
+$env:OPENAI_API_KEY = "{{YOUR_GITHUB_PAT}}"
+```
 
 ## -1- Build the sample
 
