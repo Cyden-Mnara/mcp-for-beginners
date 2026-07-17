@@ -196,7 +196,7 @@ Since this is primarily a documentation repository, testing focuses on:
 1. **Link Validation**: Ensure all internal links work
 ```bash
 # Check for broken markdown links
-find . -name "*.md" -type f | xargs grep -n "\[.*\](.*)"
+find . -name "*.md" -not -path "*/node_modules/*" -not -path "./translations/*" -not -path "./translated_images/*" -print0 | xargs -0 grep -n "\[.*\](.*)"
 ```
 
 2. **Code Sample Validation**: Test that code examples compile/run
@@ -209,7 +209,7 @@ npm install && npm test
 3. **Markdown Linting**: Check formatting consistency
 ```bash
 # Use markdownlint if needed
-npx markdownlint-cli2 "**/*.md" "#node_modules"
+npx --yes markdownlint-cli2 "**/*.md" "#node_modules" "#translations" "#translated_images"
 ```
 
 ### Sample Project Testing
