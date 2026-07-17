@@ -82,7 +82,7 @@ mvn spring-boot:run
   - Repository docs lint:
     `npx --yes markdownlint-cli2 "**/*.md" "#node_modules" "#translations" "#translated_images"`
   - Repository docs link pattern audit:
-    `find . -name "*.md" -not -path "*/node_modules/*" -not -path "./translations/*" -not -path "./translated_images/*" -print0 | xargs -0 grep -En "\[.*\](.*)"`
+    `find . -name "*.md" -not -path "*/node_modules/*" -not -path "./translations/*" -not -path "./translated_images/*" -print0 | xargs -0 grep -En "\[.*\]\(.*\)"`
   - TypeScript sample validation:
     `cd 03-GettingStarted/samples/typescript && npm ci && npm test && npm run build`
   - Python sample validation:
@@ -198,7 +198,7 @@ Since this is primarily a documentation repository, testing focuses on:
 1. **Link Validation**: Ensure all internal links work
 ```bash
 # Check for broken markdown links
-find . -name "*.md" -not -path "*/node_modules/*" -not -path "./translations/*" -not -path "./translated_images/*" -print0 | xargs -0 grep -En "\[.*\](.*)"
+find . -name "*.md" -not -path "*/node_modules/*" -not -path "./translations/*" -not -path "./translated_images/*" -print0 | xargs -0 grep -En "\[.*\]\(.*\)"
 ```
 
 2. **Code Sample Validation**: Test that code examples compile/run
