@@ -195,9 +195,9 @@ To automate validation, configure a CI job that:
 
 Since this is primarily a documentation repository, testing focuses on:
 
-1. **Link Validation**: Ensure all internal links work
+1. **Link Pattern Audit**: List Markdown links for review
 ```bash
-# Check for broken markdown links
+# List Markdown links (pattern audit)
 find . -name "*.md" -not -path "*/node_modules/*" -not -path "./translations/*" -not -path "./translated_images/*" -print0 | xargs -0 grep -En "\[.*\]\(.*\)"
 ```
 
