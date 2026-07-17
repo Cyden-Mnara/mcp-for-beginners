@@ -82,7 +82,7 @@ mvn spring-boot:run
   - Repository docs lint:
     `npx --yes markdownlint-cli2 "**/*.md" "#node_modules" "#translations" "#translated_images"`
   - Repository docs link pattern audit:
-    `find . -name "*.md" -not -path "*/node_modules/*" -not -path "./translations/*" -not -path "./translated_images/*" -print0 | xargs -0 grep -n "\[.*\](.*)"`
+    `find . -name "*.md" -not -path "*/node_modules/*" -not -path "./translations/*" -not -path "./translated_images/*" -print0 | xargs -0 grep -En "\[.*\](.*)"`
   - TypeScript sample validation:
     `cd 03-GettingStarted/samples/typescript && npm ci && npm test && npm run build`
   - Python sample validation:
@@ -139,12 +139,14 @@ health before merge.
 - `E_SAMPLE_TEST_FAILED`: sample test/build exits non-zero.
 - `E_TIMEOUT`: command exceeded configured timeout.
 
-##### CI contract
+##### Recommended CI contract
 
-- Trigger on pull requests touching `*.md`, sample code, or this file.
-- Run the exact commands listed above.
-- Persist logs as artifacts.
-- Fail job on any non-zero exit code.
+To automate validation, configure a CI job that:
+
+- Triggers on pull requests touching `*.md`, sample code, or this file.
+- Runs the exact commands listed above.
+- Persists logs as artifacts.
+- Fails the job on any non-zero exit code.
 
 #### If you ship an MCP server from this repo
 
@@ -196,7 +198,7 @@ Since this is primarily a documentation repository, testing focuses on:
 1. **Link Validation**: Ensure all internal links work
 ```bash
 # Check for broken markdown links
-find . -name "*.md" -not -path "*/node_modules/*" -not -path "./translations/*" -not -path "./translated_images/*" -print0 | xargs -0 grep -n "\[.*\](.*)"
+find . -name "*.md" -not -path "*/node_modules/*" -not -path "./translations/*" -not -path "./translated_images/*" -print0 | xargs -0 grep -En "\[.*\](.*)"
 ```
 
 2. **Code Sample Validation**: Test that code examples compile/run
